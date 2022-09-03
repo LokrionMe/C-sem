@@ -15,17 +15,14 @@ void PrintArray(int [] array)
     }
     Console.WriteLine();
 }
-bool CheckNumber(int[] array, int number)
+int [] FirstAndLast (int [] array)
 {
-    for (int i = 0; i < array.Length; i++)
+    int [] arr = new int [array.Length / 2 + array.Length % 2];
+    for (int i = 0; i < (array.Length / 2 + array.Length % 2); i++)
     {
-        if (array[i] == number) 
-        {
-            return true;
-        }                     
+        arr[i] = array[i] * array[array.Length - i - 1];
     }
-    return false;
-
+    return arr;
 }
 
 Console.Write("Input size of array:");
@@ -36,8 +33,4 @@ Console.Write("Input maximum number:");
 int maxValue = Convert.ToInt32(Console.ReadLine());
 int [] newArr = CreatRandomArray(size, minValue, maxValue);
 PrintArray(newArr);
-Console.Write("Input cheking number: ");
-int chNumber = Convert.ToInt32(Console.ReadLine());
-bool check = CheckNumber(newArr, chNumber);
-if (check == true) Console.WriteLine("Number is fined");
-else Console.WriteLine("Number is empty");
+PrintArray(FirstAndLast(newArr));
